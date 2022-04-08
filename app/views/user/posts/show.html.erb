@@ -1,0 +1,10 @@
+<h1>SHOWページ</h1>
+<%= image_tag @post.get_image %>
+<%= @post.title %>
+<%= @post.body %>
+<%= @post.user.name %>
+
+<% if @post.user_id == current_user.id %>
+<%= link_to "編集", edit_user_post_path(@post) %>
+<%= link_to "削除", user_post_path(@post), method: :delete, date: { confirm: '削除しますか？'} %>
+<% end %>
