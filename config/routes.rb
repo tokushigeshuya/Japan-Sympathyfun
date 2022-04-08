@@ -5,6 +5,12 @@ Rails.application.routes.draw do
     root 'user/homes#about'
     
     resources :posts
+    
+    resources :users, only: [:index,:show,:edit,:update] do
+      member do
+        get 'unsubscribe'
+      end
+    end
   end
   
   devise_for :admins, skip: [:registrations,:password],controllers:{
