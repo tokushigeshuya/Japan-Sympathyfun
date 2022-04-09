@@ -1,9 +1,7 @@
 <h1>INDEXページ</h1>
 <% @post.each do |post| %>
-<%= image_tag post.get_image %>
+<%= image_tag post.get_image, size: "180x180" %>
 <%= link_to post.title, user_post_path(post.id) %>
 <%= post.body %>
 <%= post.user.name %>
 <% end %>
-
-<%= link_to "新規投稿", new_user_post_path %>

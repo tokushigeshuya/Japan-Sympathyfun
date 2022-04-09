@@ -1,2 +1,19 @@
 <h1>User::Users#show</h1>
-<p>Find me in app/views/user/users/show.html.erb</p>
+
+<%= image_tag @user.get_image %>
+<%= @user.name %>
+<%= @user.introduction %>
+
+<% if @user == current_user %>
+<%= link_to 'プロフィール編集', edit_user_user_path(@user.id) %>
+<% end %>
+
+<p>新着投稿</p>
+<% if @post %>
+  <% @post.each do |post| %>
+  <%= image_tag post.get_image %>
+  <%= link_to post.title, user_post_path(post.id) %>
+  <% end %>
+<% else %>
+  <p>現在このユーザーの投稿はありません</p>
+<% end %>

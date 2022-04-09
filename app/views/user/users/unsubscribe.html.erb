@@ -1,2 +1,6 @@
 <h1>User::Users#unsubscribe</h1>
-<p>Find me in app/views/user/users/unsubscribe.html.erb</p>
+<h2>本当に退会しますか？</h2>
+<p>退会すると新規投稿ができなくなります</p>
+
+<%= link_to '退会しない', edit_user_user_path(@user) %>
+<%= link_to '退会する', user_user_path, method: :patch, data: { confilm: "本当に退会しますか？" } %>
