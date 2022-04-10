@@ -3,4 +3,4 @@
 <p>退会すると新規投稿ができなくなります</p>
 
 <%= link_to '退会しない', edit_user_user_path(@user) %>
-<%= link_to '退会する', user_user_path, method: :patch, data: { confilm: "本当に退会しますか？" } %>
+<%= link_to '退会する', withdrawal_user_user_path, method: :patch, data: { confilm: "本当に退会しますか？" } %>

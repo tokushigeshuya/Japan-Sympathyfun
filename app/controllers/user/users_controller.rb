@@ -17,6 +17,13 @@ class User::UsersController < ApplicationController
     @user = current_user
   end
 
+  def withdrawal
+    @user = User.find(params[:id])
+    @user.update(is_deleted: true)
+    reset_session
+    redirect_to user_root_path
+  end
+
   def update
     @user = current_user
     if @user.update(user_params)
