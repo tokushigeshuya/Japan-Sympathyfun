@@ -12,6 +12,8 @@ class User < ApplicationRecord
     has_many :followings, through: :relationships, source: :followed
     has_many :followers, through: :relationships, source: :follower
     
+    has_many :post_comments, dependent: :destroy
+    
     def active_for_authentication?
       super && (is_deleted == false)
     end

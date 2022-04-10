@@ -1,11 +1,13 @@
 Rails.application.routes.draw do
-  
+
   namespace :user do
     get 'homes/top'
     root 'user/homes#about'
-    
-    resources :posts
-    
+
+    resources :posts do
+      resources :post_comments, only: [:create]
+    end
+
     resources :users, only: [:index,:show,:edit,:update] do
       member do
         get 'unsubscribe'
@@ -17,7 +19,7 @@ Rails.application.routes.draw do
       end
     end
   end
-  
+
   devise_for :admins, skip: [:registrations,:password],controllers:{
     sessions: "admin/sessions"
   }
@@ -27,4 +29,5 @@ Rails.application.routes.draw do
   sessions: 'user/sessions'
   }
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
+
 end
