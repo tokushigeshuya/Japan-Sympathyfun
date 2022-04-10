@@ -5,7 +5,7 @@ Rails.application.routes.draw do
     root 'user/homes#about'
 
     resources :posts do
-      resources :post_comments, only: [:create]
+      resources :post_comments, only: [:create,:destroy]
     end
 
     resources :users, only: [:index,:show,:edit,:update] do
