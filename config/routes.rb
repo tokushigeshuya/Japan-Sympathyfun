@@ -1,8 +1,9 @@
 Rails.application.routes.draw do
-
+  
+  root 'user/homes#top'
   namespace :user do
-    get 'homes/top'
-    root 'user/homes#about'
+    get 'homes/about'
+    get 'homes/search'
 
     resources :posts do
       resources :post_comments, only: [:create,:destroy]

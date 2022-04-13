@@ -5,4 +5,7 @@ class User::HomesController < ApplicationController
 
   def about
   end
+  
+  def search
+  end
 end
