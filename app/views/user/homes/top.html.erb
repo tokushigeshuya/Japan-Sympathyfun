@@ -1,11 +1,23 @@
-<h1>TOPページ</h1>
-<% if @post != nil %>
-  <% @post.each do |post| %>
-  <%= image_tag post.get_image, size: "180x180"%>
-  <%= link_to post.title, user_post_path(post.id) %>
-  <%= post.body %>
-  <%= post.user.name %>
-  <% end %>
-<% else %>
-<p>現在投稿はありません</p>
-<% end %>
+<div class="container">
+<h2 class="m-2">ようこそJpanSympathyfunへ</h2>
+<div class="previews">
+    <div class="slider">
+      <%= image_tag 'photo0000-4040' %>
+      <%= image_tag 'photo0000-3542' %>
+      </div>
+</div>
+  <div class="row">
+    <div class="col-md-9">
+      <h2 class="mb-5">新規投稿</h2>
+      <% @post_all.each do |post| %>
+      <div class="d-flex flex-wrap">
+        <div class="card mb-5 shadow-sm m-4">
+        <%= image_tag post.get_image, size: "180x180", class:"card-img-top"%>
+        <div class="card-body text-center"><%= link_to post.title, user_post_path(post.id) %></div>
+        <%= post.user.name %>
+        </div>
+      <% end %>
+      </div>
+  </div>
+</div>
+</div>
