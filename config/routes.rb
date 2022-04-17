@@ -1,5 +1,5 @@
 Rails.application.routes.draw do
-  
+
   root 'user/homes#top'
   namespace :user do
     get 'homes/about'
@@ -22,6 +22,11 @@ Rails.application.routes.draw do
     end
   end
 
+
+  namespace :admin do
+    resources :posts, only:[:index,:show,:edit,:update,:destroy]
+    resources :users, only:[:index,:show,:edit,:update]
+  end
   devise_for :admins, skip: [:registrations,:password],controllers:{
     sessions: "admin/sessions"
   }
