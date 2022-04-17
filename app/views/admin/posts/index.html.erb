@@ -1,0 +1,6 @@
+<% @post.each do |post| %>
+<%= image_tag post.get_image, size: "180x180" %>
+<%= link_to post.title, admin_post_path(post.id) %>
+<%= post.body %>
+<%= post.user.name %>
+<% end %>
