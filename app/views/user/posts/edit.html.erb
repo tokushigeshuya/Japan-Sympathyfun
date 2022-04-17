@@ -8,6 +8,9 @@
 
       <p>body</p>
       <%= f.text_area :body %><br>
+      <p>address</p>
+      <%= f.label :住所 %>
+      <%= f.text_area :address, autofocus: true %>
 
       <%= f.submit 'Update' %>
     <% end %>

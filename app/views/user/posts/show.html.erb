@@ -1,6 +1,5 @@
 <div class="container">
    <div class="row mt-2">
-     <div class="col-md-2"></div>
        <div class="col-md-8">
          <div class="card w-100 mx-auto mt-4 shadow-lg">
            <%= image_tag @post.get_image, size: "800x800", class:"card-img-top" %>
@@ -18,15 +17,9 @@
                   <span><i class="fa fa-calendar mr-1"></i><%= @post.created_at.strftime('%Y/%m/%d') %></span>
                   <span class="ml-2"><i class="fa fa-comment mr-1"></i><%= @post.post_comments.count %></span>
                   <span class="ml-2">
-                    <% if @post.favorited_by?(current_user) %>
-                      <%= link_to user_post_favorites_path(@post), method: :delete do %>
-                      ♥<%= @post.favorites.count %> いいね
-                      <% end %>
-                      <% else %>
-                      <%= link_to user_post_favorites_path(@post), method: :post do %>
-                       ♡<%= @post.favorites.count %> いいね
-                      <% end %>
-                    <% end %>
+                    <div id="favorite_buttons_<%= @post.id %>">
+                      <%= render "user/favorites/favorites", post: @post %>
+                    </div>
                   </span>
                   <% if @post.user_id == current_user.id %>
                     <div class="text-right">
@@ -34,83 +27,46 @@
                       <%= link_to "削除", user_post_path(@post), method: :delete, date: { confirm: '削除しますか？'},class:"btn btn-danger" %>
                     </div>
                   <% end %>
-                  <div class="comments card-text">
-                    <h5><%= @post.post_comments.count %>件のコメント</h5>
-                    <div class="media border mb-3">
-                      <% @post.post_comments.each do |post_comment| %>
-                        <%= link_to user_user_path(post_comment.user.id) do %>
-                        <%= image_tag post_comment.user.get_image %>
-                        <%= post_comment.user.name %>
-                        <% end %>
-                        <p><%= post_comment.created_at.strftime('%Y/%m/%d') %></p>
-                        <p><%= post_comment.comment %></p>
-                        <% if post_comment.user == current_user %>
-                          <div class="text-right"><%= link_to "削除", user_post_post_comment_path(post_comment.post, post_comment), method: :delete, class:"btn btn-danger" %></div>
-                        <% end %>
-                      <% end %>
-                    </div>
-                  </div>
                 </div>
-
-                  <%= form_with model: [@post,@post_comment], url: user_post_post_comments_path(@post,@post_comment), method: :post do |f| %>
-                  <%= f.text_area :comment, rows: '5', placeholder: "コメントをここに", class: 'form-control' %>
-                  <%= f.submit "送信する", class: "btn btn-success" %>
-                  <% end %>
+                
+                  <div class="col">
+                    <h5 class="text-center mt-2"><%= @post.post_comments.count %>件のコメント</h5>
+                    <hr>
+                      <% @post.post_comments.each do |post_comment| %>
+                       <div class="comments card-text">
+                        <div class="media border mb-3">
+                          <%= link_to user_user_path(post_comment.user.id) do %>
+                           <div class="card-image-left"><%= image_tag post_comment.user.get_image %></div>
+                           <div class="text-center"><%= post_comment.user.name %></div>
+                          <% end %>
+                          <p><%= post_comment.created_at.strftime('%Y/%m/%d') %></p>
+                          <p class="card-body"><%= post_comment.comment %></p>
+                          <% if post_comment.user == current_user %>
+                            <div class="text-right"><%= link_to "削除", user_post_post_comment_path(post_comment.post, post_comment), method: :delete, class:"btn btn-danger" %></div>
+                          <% end %>
+                        </div>
+                       </div>
+                      <% end %>
+                  </div>
+                
+                  
+              </div>
+            </div>
           </div>
         </div>
+         <div class="col-md-4 mt-3">
+          <table class="table table-bordered">
+           <thead><th>住所</th></thead>
+            <td>
+             <%= @post.address %>
+             <iframe src="https://maps.google.com/maps?output=embed&q=<%= @post.address %>&t=m&hl=ja&z=18" width="100%" height="250" frameborder="0" style="border:0;" allowfullscreen=""></iframe>
+            </td>
+          </table>
+          <%= form_with model: [@post,@post_comment], url: user_post_post_comments_path(@post,@post_comment), method: :post do |f| %>
+            <%= f.text_area :comment, rows: '5', placeholder: "コメントをここに", class: 'form-control' %>
+            <%= f.submit "送信する", class: "btn btn-success" %>
+          <% end %>
+        </div>
       </div>
-    </div>
   </div>
 
-
-
-
-
-  <div class="col-md-2"></div>
-</div>
-
-<iframe src="https://maps.google.com/maps?output=embed&q=<%= @post.address %>&t=h&hl=ja&z=18" width="100%" height="250" frameborder="0" style="border:0;" allowfullscreen=""></iframe>
-
-・・・
-<p>住所</p>
-<p><%= @post.address %></p>(住所名表示)
-
-<div id="map"></div>(地図を表示)
-・・・
-
-<style>(地図の大きさ指定)
-#map{
-  height: 150px;
-  width:270px;
-}
-</style>
-
-<script type="text/javascript">
-    function initMap() {
-
-        var test ={lat: <%= @post.latitude %>, lng: <%= @post.longitude %>};
-        var map = new google.maps.Map(document.getElementById('map'), {
-            zoom: 15,
-            center: test
-        });
-        var transitLayer = new google.maps.TransitLayer();
-        transitLayer.setMap(map);
-
-        var contentString = '住所：<%= @post.address %>';
-        var infowindow = new google.maps.InfoWindow({
-            content: contentString
-        });
-
-        var marker = new google.maps.Marker({
-            position:test,
-            map: map,
-            title: contentString
-        });
-
-        marker.addListener('click', function() {
-            infowindow.open(map, marker);
-        });
-    }
-</script>
-
-<script async defer src="https://maps.googleapis.com/maps/api/js?v=3.exp&key=<%= ENV['GOOGLE_MAP_API_KEY'] %>&callback=initMap"></script>
