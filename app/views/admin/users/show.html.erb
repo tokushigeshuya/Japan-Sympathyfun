@@ -1,0 +1,25 @@
+<%= image_tag @user.get_image %>
+<%= @user.name %>
+<%= @user.introduction %>
+
+<div class="col-3">会員ステータス</div>
+<% if @user.is_deleted == true %>
+<div class="text-secondary font-weight-bold">退会</div>
+<% else %>
+<div class="text-success font-weight-bold">有効</div>
+<% end %>
+
+
+<%= link_to 'ユーザー情報編集', edit_admin_user_path(@user.id) %>
+
+
+
+<p>新着投稿</p>
+<% if @post %>
+  <% @post.each do |post| %>
+  <%= image_tag post.get_image %>
+  <%= link_to post.title, admin_post_path(post.id) %>
+  <% end %>
+<% else %>
+  <p>現在このユーザーの投稿はありません</p>
+<% end %>

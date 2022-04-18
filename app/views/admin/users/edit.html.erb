@@ -1,0 +1,23 @@
+<%= image_tag @user.get_image %>
+<p>name|<%= @user.name %></p>
+<p>自己紹介|<%= @user.introduction%></p>
+
+
+<%= form_with model: @user, url: admin_user_path, method: :patch, local: true do |f| %>
+    <h4>画像</h4>
+      <%= f.file_field :profile_image, accept: "image/*" %>
+    <p>name</p>
+      <%= f.text_field :name %>
+
+      <p>自己紹介</p>
+      <%= f.text_area :introduction %><br>
+      
+     
+      <div colspan="2" class="pt-4"><%= f.label :会員ステータス %></div>
+      <div class="pt-4">
+        <%= f.radio_button :is_deleted, false %> <%= f.label :is_deleted, "有効", value: true %>
+        <%= f.radio_button :is_deleted, true %> <%= f.label :is_deleted, "退会", value: false %>
+      </div>
+
+      <%= f.submit 'Update' %>
+    <% end %>

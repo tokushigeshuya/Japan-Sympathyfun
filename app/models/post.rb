@@ -5,6 +5,10 @@ class Post < ApplicationRecord
   has_many :post_comments, dependent: :destroy
   geocoded_by :address
   after_validation :geocode, if: :address_changed?
+  
+  validates :title, presence: true
+  validates :body, presence: true
+  validates :address, presence: true
 
 
   def favorited_by?(user)

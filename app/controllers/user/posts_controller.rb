@@ -1,4 +1,5 @@
 class User::PostsController < ApplicationController
+before_action :authenticate_user!, except: [:index, :show]
 
   def new
     @post = Post.new
@@ -25,8 +26,11 @@ class User::PostsController < ApplicationController
   def create
     @post = Post.new(post_params)
     @post.user_id = current_user.id
-    @post.save
-    redirect_to user_posts_path
+    if @post.save
+      redirect_to user_posts_path
+    else
+      render new
+    end
   end
 
   def update
