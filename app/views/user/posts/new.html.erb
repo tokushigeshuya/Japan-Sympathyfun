@@ -1,12 +1,31 @@
-<<h1>画像投稿フォーム</h1>
-  <%= form_with model: @post, url: user_posts_path, method: :post, local: true do |f| %>
-    <h4>画像</h4>
-      <%= f.file_field :image, accept: "image/*" %>
-    <h4>タイトル</h4>
-      <%= f.text_field :title %>
-    <h4>body</h4>
-      <%= f.text_area :body %>
-      <%= f.label :住所 %>
-      <%= f.text_area :address, autofocus: true %>
-    <%= f.submit '投稿' %>
-  <% end %>
+<div class=container>
+ <div class="row mb-3">
+   <div class="col-md-3">
+     <h2 class="ml-5 mt-3">新規投稿</h2>
+   </div>
+  </div>
+  <div class="row">
+    <div class="col-md-5 mx-auto mb-5">
+      <div class="form mt-5">
+        <%= form_with model: @post, url: user_posts_path, method: :post, local: true do |f| %>
+        <div class="filed">
+         <div class="col-2"><%= f.label :画像 %></div>
+         <%= f.file_field :image, accept: "image/*" %>
+        </div>
+        <div class="form-group">
+        <div class="mt-2"><%= f.label :'タイトル' %></dib><br>
+        <%= f.text_field :title, autofocus: true, class: 'form-control'%>
+        </div>
+        <div class="form-group">
+        <%= f.label :住所 %>
+        <%= f.text_field :address, autofocus: true, class:'form-control' %>
+        </div>
+        <div class="form-group">
+        <%= f.label :本文 %>
+        <%= f.text_area :body, autofocus: true, class:'form-control' %>
+        </div>
+        <%= f.submit '投稿', class:'btn btn-success' %>
+       <% end %>
+      </div>
+    </div>
+  </div>
