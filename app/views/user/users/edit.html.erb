@@ -1,20 +1,36 @@
-<h1>User::Users#edit</h1>
-<%= image_tag @user.get_image %>
-<p>name|<%= @user.name %></p>
-<p>自己紹介|<%= @user.introduction%></p>
-
-
-<%= form_with model: @user, url: user_user_path, method: :patch, local: true do |f| %>
-    <h4>画像</h4>
-      <%= f.file_field :profile_image, accept: "image/*" %>
-    <p>name</p>
-      <%= f.text_field :name %>
-
-      <p>自己紹介</p>
-      <%= f.text_area :introduction %><br>
-
-      <%= f.submit 'Update' %>
-    <% end %>
-
-<%= link_to '退会する', unsubscribe_user_user_path %>
-
+<div class="container">
+  <div class="row mb-3">
+    <div class="col-md-3">
+      <h3 class="ml-5 mt-3">ユーザー編集</h3>
+    </div>
+  </div>
+  <div class="col-md-5">
+    <div class="card w-100 mx-auto mt-4 shadow-lg">
+     <%= image_tag @user.get_image, size: "150x150", class: 'card-img-top　img-responsive-overwrite mx-auto' %>
+      <div class="card-body">
+      <p>ユーザーネーム：<strong><%= @user.name %></strong></p>
+      <div class="mb-3">
+        <i class="far fa-address-card mr-2"></i>紹介文
+      </div>
+      <div class="border mb-3"><%= @user.introduction%></div>
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-4">
+      <div class="form-group">
+        <%= form_with model: @user, url: user_user_path, method: :patch, local: true do |f| %>
+            <%= f.label :画像 %>
+            <%= f.file_field :profile_image, accept: "image/*" %>
+            <%= f.label :ユーザーネーム %>
+            <%= f.text_field :name %>
+            <%= f.label :自己紹介文 %>
+            <%= f.text_area :introduction %><br>
+        
+              <%= f.submit 'Update' %>
+            <% end %>
+      </div>
+    <%= link_to '退会する', unsubscribe_user_user_path %>
+    </div>
+</div>
+</div>
