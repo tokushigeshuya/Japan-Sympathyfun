@@ -1,6 +1,21 @@
-<h1>User::Users#unsubscribe</h1>
-<h2>本当に退会しますか？</h2>
-<p>退会すると新規投稿ができなくなります</p>
+<div class="container py-5">
+  <div class="row">
+    <h4 class="px-3 mx-auto"><strong>本当に退会しますか？</strong></h4>
+  </div>
+  <div class="row">
+    <h4 class="px-3 mx-auto">退会すると、会員登録情報や</h4>
+  </div>
+  <div class="row">
+    <h4 class="px-3 mx-auto">新規投稿、コメントができなくなります。</h4>
+  </div>
+  <div class="row">
+    <h4 class="px-3 mx-auto">退会する場合は「退会する」をクリックしてください。</h4>
+  </div>
+  <div class="row">
+    <h4 class="mt-5 mx-auto">
+      <%= link_to '退会しない', edit_user_user_path(@user), class: 'btn btn-success' %>
+      <%= link_to '退会する', withdrawal_user_user_path, method: :patch, data: { confilm: "本当に退会しますか？" }, class: 'btn btn-danger' %>
+    </h4>
+  </div>
+  </div>
 
-<%= link_to '退会しない', edit_user_user_path(@user) %>
-<%= link_to '退会する', withdrawal_user_user_path, method: :patch, data: { confilm: "本当に退会しますか？" } %>

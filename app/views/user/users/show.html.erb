@@ -35,16 +35,25 @@
 
 <h5 class="ml-3 mt-3"><%= @user.name %>さんの新着投稿</h5>
  <div class="row">
-   <div class="col-12 d-flex flex-row">
     <% if @post %>
       <% @post.each do |post| %>
-      <div class="card ml-3 shadow-sm">
-       <%= image_tag post.get_image, size: "140x140",class: 'card-img-top' %>
-        <div class="card-body auto">
-         <div class="card-text"><%= link_to post.title, user_post_path(post.id) %></div>
-        </div>
-      </div>
-      <% end %>
+          <div class="col-md-3">
+            <div class="card mb-4 shadow-sm">
+              <%= image_tag post.get_image, size: "180x180", class: 'card-img-top img-responsive-overwrite mx-auto' %>
+                <div class="card-body">
+                  <p class="card-text"><%= link_to post.title, user_post_path(post.id) %></p>
+                    <div class="d-flex justify-content-between align-items-center">
+                      <item>
+                      <%= image_tag post.user.get_image, size: "30x30" %>
+                      <%= link_to post.user.name, user_user_path(post.user.id) %>
+                      </item>
+                      <small class="text-muted"><%= post.created_at.strftime('%Y/%m/%d') %></small>
+                    </div>
+                </div>
+            </div>
+          </div>
+        <% end %>
+    </div>
     <% else %>
       <p>現在このユーザーの投稿はありません</p>
     <% end %>

@@ -1,5 +1,27 @@
-<h1>User::Users#index</h1>
-<% @user.each do |user| %>
-<%= image_tag user.get_image, size: "120x120" %>
-<%= link_to user.name, user_user_path(user.id) %>
-<% end %>
+<div class="album py-5 bg-light">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-4">
+        <h3 class="ml-3 mt-3">ユーザー</h3>
+      </div>
+    </div>
+    <div class="row mt-3">
+      <% @user.each do |user| %>
+        <div class="col-md-3">
+          <div class="card mb-4 shadow-sm">
+            <%= image_tag user.get_image, size: "100x100", class: 'card-img-top' %>
+              <div class="card-body">
+                <p class="card-text"><%= link_to user.name, user_user_path(user.id) %></p>
+                  <div class="d-flex justify-content-between align-items-center">
+                    <item>
+                     フォロー:<%= user.followings.count %>
+                     フォロワー:<%= user.followers.count %>
+                    </item>
+                  </div>
+              </div>
+          </div>
+        </div>
+      <% end %>
+    </div>
+  </div>
+</div>
