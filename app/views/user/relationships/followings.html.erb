@@ -1,2 +1,31 @@
-<h1>User::Relationships#followings</h1>
-<p>Find me in app/views/user/relationships/followings.html.erb</p>
+<div class="album py-5 bg-light">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-4">
+        <h3 class="ml-3 mt-3">フォロー</h3>
+      </div>
+    </div>
+    <div class="row mt-3">
+      <% if @users.exists? %>
+        <% @users.each do |user| %>
+          <div class="col-md-3">
+            <div class="card mb-4 shadow-sm">
+              <%= image_tag user.get_image, size: "100x100", class: 'card-img-top' %>
+                <div class="card-body">
+                  <p class="card-text"><%= link_to user.name, user_user_path(user.id) %></p>
+                    <div class="d-flex justify-content-between align-items-center">
+                      <item>
+                       フォロー:<%= link_to user.count, followings_user_user_relationships_path(user.id) %>
+                       フォロワー:<%= link_to user.followers.count, followers_user_user_relationships_path(user.id) %>
+                      </item>
+                    </div>
+                </div>
+            </div>
+          </div>
+        <% end %>
+      <% else %>
+        <p>ユーザーはいません</p>
+      <% end %>
+    </div>
+  </div>
+</div>

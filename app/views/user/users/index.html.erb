@@ -14,8 +14,8 @@
                 <p class="card-text"><%= link_to user.name, user_user_path(user.id) %></p>
                   <div class="d-flex justify-content-between align-items-center">
                     <item>
-                     フォロー:<%= user.followings.count %>
-                     フォロワー:<%= user.followers.count %>
+                     フォロー:<%= link_to user.followings.count, followings_user_user_relationships_path(user.id) %>
+                     フォロワー:<%= link_to user.followers.count, followers_user_user_relationships_path(user.id) %>
                     </item>
                   </div>
               </div>
