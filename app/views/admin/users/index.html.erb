@@ -1,4 +1,37 @@
-<% @users.each do |user| %>
-<%= image_tag user.get_image, size: "120x120" %>
-<%= link_to user.name, admin_user_path(user.id) %>
-<% end %>
+<div class="container">
+  <div class="row">
+    <div class="col-md-4">
+      <h3 class="ml-3 mb-3">ユーザー管理(全<%= @users.count %>)件</h3>
+    </div>
+  </div>
+  <div class="row">
+    <table class="table t-2">
+      <thead>
+        <tr>
+          <th scope="col"></th>
+          <th scope="col">ユーザー名</th>
+          <th scope="col">会員ステータス</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% @users.each do |user| %>
+        <tr>
+          <td><%= image_tag user.get_image, size: "80x80" %></td>
+          <td><%= link_to user.name, admin_user_path(user.id) %></td>
+          <td>
+            <% if user.is_deleted == true %>
+              <div class="text-secondary font-weight-bold">退会</div>
+            <% else %>
+              <div class="text-success font-weight-bold">有効</div>
+            <% end %>
+          </td>
+        </tr>
+        <% end %>
+      </tbody>
+      
+    </table>
+  </div>
+</div>
+
+
+

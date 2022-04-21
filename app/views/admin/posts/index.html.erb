@@ -1,6 +1,28 @@
-<% @post.each do |post| %>
-<%= image_tag post.get_image, size: "180x180" %>
-<%= link_to post.title, admin_post_path(post.id) %>
-<%= post.body %>
-<%= post.user.name %>
-<% end %>
+<div class="container">
+  <div class="row">
+    <div class="col-md-4">
+      <h3 class="ml-3 mb-3">投稿管理(全<%= @post.count %>)件</h3>
+    </div>
+  </div>
+  <div class="row">
+    <table class="table t-2">
+      <thead>
+        <tr>
+          <th scope="col"></th>
+          <th scope="col">タイトル</th>
+          <th scope="col">ユーザー名</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% @post.each do |post| %>
+        <tr>
+          <td><%= image_tag post.get_image, size: "80x80" %></td>
+          <td ><%= link_to post.title, admin_post_path(post.id) %></td>
+          <td><%= post.user.name %></td>
+        </tr>
+        <% end %>
+      </tbody>
+      
+    </table>
+  </div>
+</div>

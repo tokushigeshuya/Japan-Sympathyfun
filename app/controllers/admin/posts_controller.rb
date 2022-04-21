@@ -1,4 +1,7 @@
 class Admin::PostsController < ApplicationController
+
+  before_action :authenticate_admin!, except: [:index,:show,:destroy]
+
   def index
     @post = Post.all
   end
