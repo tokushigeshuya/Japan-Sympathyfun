@@ -9,7 +9,7 @@
       <% @user.each do |user| %>
         <div class="col-md-3">
           <div class="card mb-4 shadow-sm">
-            <%= image_tag user.get_image, size: "100x100", class: 'card-img-top' %>
+            <%= image_tag user.get_image, size: "100x100", class: 'card-img-top img-responsive-overwrite mx-auto' %>
               <div class="card-body">
                 <p class="card-text"><%= link_to user.name, user_user_path(user.id) %></p>
                   <div class="d-flex justify-content-between align-items-center">
