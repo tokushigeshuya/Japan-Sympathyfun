@@ -2,9 +2,11 @@
  <div class="row">
    <div class="col-md-4">
      <h5 class="ml-3 mt-3"><%= @user.name %>さんプロフィール</h5>
+     <p class="text-success"><%= notice %></p>
    </div>
   </div>
     <div class="row">
+      <p id="notice"><%= notice %></p>
       <div class="col-6 card w-100 mx-auto mt-4 shadow-lg">
         <%= image_tag @user.get_image, size: "150x150", class: 'card-img-top　img-responsive-overwrite mx-auto' %>
           <div class="card-body">

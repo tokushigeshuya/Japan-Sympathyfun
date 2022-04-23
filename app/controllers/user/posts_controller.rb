@@ -27,7 +27,7 @@ before_action :authenticate_user!, except: [:index, :show]
     @post = Post.new(post_params)
     @post.user_id = current_user.id
     if @post.save
-      redirect_to user_posts_path
+      redirect_to user_posts_path,notice: "投稿完了！"
     else
       render new
     end
@@ -36,7 +36,7 @@ before_action :authenticate_user!, except: [:index, :show]
   def update
     @post = Post.find(params[:id])
     if @post.update(post_params)
-      redirect_to user_posts_path(@post.id)
+      redirect_to user_post_path(@post.id), notice: "投稿内容を更新しました。"
     else
       render edit_user_post_path
     end
@@ -45,7 +45,7 @@ before_action :authenticate_user!, except: [:index, :show]
   def destroy
     @post = Post.find(params[:id])
     @post.destroy
-    redirect_to user_posts_path
+    redirect_to user_posts_path,notice: "投稿を削除しました"
   end
 
    private
