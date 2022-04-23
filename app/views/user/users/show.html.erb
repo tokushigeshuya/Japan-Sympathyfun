@@ -19,11 +19,11 @@
               </tr>
               <tr>
                 <td>フォロー</td>
-                <td><%= link_to @user.followings.count, followings_user_user_relationships_path(@user.id) %></td>
+                <td><%= link_to @user.followings.count, user_user_followings_path(@user.id) %></td>
               </tr>
               <tr>
                 <td>フォロワー</td>
-                <td><%= link_to @user.followers.count, followers_user_user_relationships_path(@user.id) %></td>
+                <td><%= link_to @user.followers.count, user_user_followers_path(@user.id) %></td>
               </tr>
             </table>
             <div class="d-flex justify-content-between align-items-center mt-2">

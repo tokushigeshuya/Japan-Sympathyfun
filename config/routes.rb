@@ -15,10 +15,9 @@ Rails.application.routes.draw do
         get 'unsubscribe'
         patch 'withdrawal'
       end
-      resource :relationships, only: [:create,:destroy] do
+      resource :relationships, only: [:create,:destroy]
         get 'followings' => 'relationships#followings', as: 'followings'
         get 'followers' => 'relationships#followers', as: 'followers'
-      end
     end
   end
 
