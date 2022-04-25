@@ -5,17 +5,21 @@
       <p class="text-success"><%= notice %></p>
     </div>
   </div>
-  <div class="previews">
-      <div class="slider">
-        <%= image_tag 'photo0000-4040' %>
-        <%= image_tag 'photo0000-3542' %>
+  <div class="slick">
+      <div>
+        <%= image_tag 'photo0000-4040', class: 'col' %>
+      </div>
+      <div>
+        <%= image_tag 'photo0000-3542', class: 'col' %>
       </div>
   </div>
      <div class="row">
-       <div class="album py-5 bg-light">
-        <div class="col-md-4">
+       <div class="col-md-4">
           <h3 class="ml-3 mt-3">新規投稿</h3>
         </div>
+     </div>
+       <div class="album py-5 bg-light">
+        
         <div class="row mt-3">
           <% @post_all.each do |post| %>
             <div class="col-md-3">
