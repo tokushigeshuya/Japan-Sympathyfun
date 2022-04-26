@@ -1,25 +1,29 @@
 <div class="container">
-  <div class="row">
-    <div class="col-md-8">
-      <h2 class="ml-3 mt-3">ようこそJpanSympathyfunへ</h2>
-      <p class="text-success"><%= notice %></p>
-    </div>
-  </div>
+<div class="jumbotron my-auto bg-light">
   <div class="slick">
       <div>
-        <%= image_tag 'photo0000-4040', class: 'col' %>
+        <%= image_tag 'IMG_3260',size: "250x400", class: 'col' %>
       </div>
       <div>
-        <%= image_tag 'photo0000-3542', class: 'col' %>
+        <%= image_tag 'photo0000-4040',size: "250x400", class: 'col' %>
+      </div>
+      <div>
+        <%= image_tag 'photo0000-3542',size: "250x400", class: 'col' %>
+      </div>
+      <div>
+        <%= image_tag 'yam0080-009',size: "250x400", class: 'col' %>
       </div>
   </div>
+    <h4 class="display-6">ようこそJpanSympathyfunへ!</h4>
+</div>
+  
      <div class="row">
        <div class="col-md-4">
           <h3 class="ml-3 mt-3">新規投稿</h3>
         </div>
      </div>
        <div class="album py-5 bg-light">
-        
+
         <div class="row mt-3">
           <% @post_all.each do |post| %>
             <div class="col-md-3">

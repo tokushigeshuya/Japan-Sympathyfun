@@ -22,8 +22,12 @@ Rails.start()
 Turbolinks.start()
 ActiveStorage.start()
 
-$(function() {
-  $('.slider').slick({
-      dots: true,
+$(document).on('turbolinks:load', function(){
+  $('.slick').slick({
+    // 自動再生
+    autoplay:true,
+    autoplaySpeed: 1000,
+    // ドットの表示
+    dots:true
   });
-})
+});
