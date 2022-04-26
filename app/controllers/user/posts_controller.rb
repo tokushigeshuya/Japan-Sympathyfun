@@ -6,7 +6,7 @@ before_action :authenticate_user!, except: [:index, :show]
   end
 
   def index
-    @post = Post.all
+    @post = Post.page(params[:page])
   end
 
   def edit

@@ -3,12 +3,12 @@ class User::UsersController < ApplicationController
   before_action :authenticate_user!, except: [:index]
 
   def index
-    @user = User.all
+    @user = User.page(params[:page])
   end
 
   def show
     @user = User.find(params[:id])
-    @post = @user.post
+    @post = @user.post.page(params[:page])
 
   end
 
