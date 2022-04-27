@@ -1,9 +1,10 @@
 class Admin::PostsController < ApplicationController
 
-  before_action :authenticate_admin!, except: [:index,:show,:destroy]
+  before_action :authenticate_admin!
 
   def index
-    @post = Post.all
+    @post = Post.page(params[:page])
+    @post_all = Post.all
   end
 
   def show
@@ -13,7 +14,7 @@ class Admin::PostsController < ApplicationController
   def destroy
     @post = Post.find(params[:id])
     @post.destroy
-    redirect_to admin_posts_path
+    redirect_to admin_posts_path,notice: "投稿を削除しました"
   end
 
   private

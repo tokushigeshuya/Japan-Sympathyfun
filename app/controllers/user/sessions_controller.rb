@@ -19,15 +19,15 @@ class User::SessionsController < Devise::SessionsController
   # end
 
    protected
-   
+
    def user_state
     @user = User.find_by(email: params[:user][:email])
     return if !@user
     if @user.valid_password?(params[:user][:password]) && @user.is_deleted
-      redirect_to user_root_path, notice: "退会済みのユーザーです。"
+      redirect_to new_user_registration_path, notice: "退会済みのユーザーです。"
     end
    end
-  
+
    def configure_sign_in_params
     devise_parameter_sanitizer.permit(:sign_in, keys:[:email])
    end

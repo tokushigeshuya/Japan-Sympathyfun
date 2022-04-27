@@ -22,6 +22,8 @@
 - 休日の過ごし方を決めるとき。
 
 ## 設計書
+- WBS <https://docs.google.com/spreadsheets/d/1dsp5ibyLiwYXPX5NbUzBEdvxAFuJ7xMSitC1VaWPBBY/edit?usp=sharing>
+- ER図 <https://drive.google.com/file/d/1xHddZK9a5Hv9FxO3lv4GxvQjsz2PtO5E/view?usp=sharing>
 
 
 ## チャレンジ要素一覧
@@ -35,5 +37,7 @@
 - IDE：Cloud9
 
 ## 使用素材
-- 外部サービスの画像素材・音声素材を使用した場合は、必ずサービス名とURLを明記してください。
-- 使用しない場合は、使用素材の項目をREADMEから削除してください。
+- 画像使用
+- <https://pro-foto.jp/>
+- <https://amanaimages.com/photo/category/landscape/>
+- <https://www.irasutoya.com/>

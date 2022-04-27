@@ -1,7 +1,7 @@
 <div class="container">
   <div class="row">
     <div class="col-md-4">
-      <h3 class="ml-3 mb-3">ユーザー管理(全<%= @users.count %>)件</h3>
+      <h3 class="ml-3 mb-3">ユーザー管理(全<%= @user_all.count %>)件</h3>
     </div>
   </div>
   <div class="row">
@@ -30,6 +30,7 @@
       </tbody>
       
     </table>
+    <div class="row justify-content-md-center my-3"><%= paginate @users %></div>
   </div>
 </div>
 

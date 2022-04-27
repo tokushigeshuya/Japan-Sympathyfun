@@ -1,9 +1,10 @@
 class Admin::UsersController < ApplicationController
 
-  before_action :authenticate_admin!, except: [:index,:show,:edit,:update]
+  before_action :authenticate_admin!
 
   def index
-    @users = User.all
+    @users = User.page(params[:page])
+    @user_all = User.all
   end
 
   def show
@@ -18,7 +19,7 @@ class Admin::UsersController < ApplicationController
   def update
     @user = User.find(params[:id])
     if @user.update(user_params)
-      redirect_to admin_user_path(@user.id)
+      redirect_to admin_user_path(@user.id),notice: "ユーザー情報を更新しました！"
     else
       render edit
     end

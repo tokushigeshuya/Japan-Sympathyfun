@@ -1,19 +1,50 @@
-<div class='main'>
-  <%# 商品一覧 %>
-  <div class='item-contents'>
-    <div class="item-container">
-      <ul class='item-lists'>
+<div class="album py-5 bg-light">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-4">
         <% if @q.title_cont != nil %>
-          <h3 class="subtitle"><%= "#{@q.title_cont} の検索結果" %></h3>
+          <h3 class="ml-3 mt-3"><%= "#{@q.body_cont} の検索結果" %></h3>
         <% else %>
-          <h3 class="subtitle"><%= "検索結果" %></h3>
+          <h3 class="ml-3 mt-3"><%= "検索結果" %></h3>
         <% end %>
+      </div>
+    </div>
+    <div class="row mt-3">
+      <% if admin_signed_in? %>
         <% @items.each do |item| %>
-        <%= image_tag item.get_image %>
-        <%= link_to item.title, user_post_path(item.id) %>
+          <div class="col-md-3">
+            <div class="card mb-4 shadow-sm">
+              <%= image_tag item.get_image, size: "180x180", class: 'card-img-top img-responsive-overwrite mx-auto' %>
+                <div class="card-body">
+                  <p class="card-text"><%= link_to item.title, admin_post_path(item.id) %></p>
+                    <div class="d-flex justify-content-between align-items-center">
+                      <item>
+                        <%= image_tag item.user.get_image, size: "30x30" %>
+                        <%= link_to item.user.name, admin_user_path(item.user.id) %>
+                      </item>
+                        <small class="text-muted"><%= item.created_at.strftime('%Y/%m/%d') %></small>
+                    </div>
+            </div>
+          </div>
         <% end %>
-      </ul>
+      <% else %>
+        <% @items.each do |item| %>
+          <div class="col-md-3">
+            <div class="card mb-4 shadow-sm">
+              <%= image_tag item.get_image, size: "180x180", class: 'card-img-top img-responsive-overwrite mx-auto' %>
+                <div class="card-body">
+                  <p class="card-text"><%= link_to item.title, user_post_path(item.id) %></p>
+                    <div class="d-flex justify-content-between align-items-center">
+                      <item>
+                        <%= image_tag item.user.get_image, size: "30x30" %>
+                        <%= link_to item.user.name, user_user_path(item.user.id) %>
+                      </item>
+                        <small class="text-muted"><%= item.created_at.strftime('%Y/%m/%d') %></small>
+                    </div>
+            </div>
+          </div>
+        <% end %>
+      <% end %>
     </div>
   </div>
-  <%# /商品一覧 %>
 </div>

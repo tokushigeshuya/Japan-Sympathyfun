@@ -24,7 +24,7 @@ class User::UsersController < ApplicationController
     @user = User.find(params[:id])
     @user.update(is_deleted: true)
     reset_session
-    redirect_to user_root_path,notice: "退会しました！"
+    redirect_to root_path,notice: "退会しました！"
   end
 
   def update

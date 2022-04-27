@@ -30,7 +30,7 @@
                    <% if @post.user_id == current_user.id %>
                     <div class="text-right">
                       <%= link_to "編集", edit_user_post_path(@post), class:"btn btn-success" %>
-                      <%= link_to "削除", user_post_path(@post), method: :delete, date: { confirm: '削除しますか？'},class:"btn btn-danger" %>
+                      <%= link_to "削除", user_post_path(@post), method: :delete, data: { confirm: '削除しますか？'},class:"btn btn-danger" %>
                     </div>
                    <% end %>
                   <% end %>
@@ -43,13 +43,13 @@
                        <div class="comments card-text">
                         <div class="media border mb-3">
                           <%= link_to user_user_path(post_comment.user.id) do %>
-                           <div class="card-image-left"><%= image_tag post_comment.user.get_image %></div>
+                           <div class="card-image-left"><%= image_tag post_comment.user.get_image, size: "80x80" %></div>
                            <div class="text-center"><%= post_comment.user.name %></div>
                           <% end %>
-                          <p><%= post_comment.created_at.strftime('%Y/%m/%d') %></p>
-                          <p class="card-body"><%= post_comment.comment %></p>
+                          <div class="ml-3"><%= post_comment.created_at.strftime('%Y/%m/%d') %></div>
+                          <p class="card-body mt-2 mx-auto"><%= post_comment.comment %></p>
                           <% if post_comment.user == current_user %>
-                            <div class="text-right"><%= link_to "削除", user_post_post_comment_path(post_comment.post, post_comment), method: :delete, class:"btn btn-danger" %></div>
+                            <div class="text-right"><%= link_to "削除", user_post_post_comment_path(post_comment.post, post_comment), method: :delete, data: {confirm: '削除しますか？'}, class:"btn btn-danger" %></div>
                           <% end %>
                         </div>
                        </div>
@@ -75,7 +75,7 @@
             <%= f.submit "送信する", class: "btn btn-success" %>
           <% end %>
          <% else %>
-         会員登録してコメントしよう！登録は<%= link_to 'コチラから！', new_user_registration_path %>
+         会員登録してコメントしよう！<br>登録は<%= link_to 'コチラから！', new_user_registration_path %>
          <% end %>
         </div>
       </div>

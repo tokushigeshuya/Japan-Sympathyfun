@@ -23,7 +23,9 @@ Rails.application.routes.draw do
 
 
   namespace :admin do
-    resources :posts, only:[:index,:show,:edit,:update,:destroy]
+    resources :posts, only:[:index,:show,:edit,:update,:destroy] do
+      resources :post_comments, only: [:destroy]
+    end
     resources :users, only:[:index,:show,:edit,:update]
   end
   devise_for :admins, skip: [:registrations,:password],controllers:{
