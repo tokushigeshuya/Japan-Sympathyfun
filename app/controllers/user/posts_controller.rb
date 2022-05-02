@@ -7,6 +7,7 @@ before_action :authenticate_user!, except: [:index, :show]
 
   def index
     @post = Post.page(params[:page])
+    @posts = Post.where(user_id: [*current_user.following_ids])
   end
 
   def edit
