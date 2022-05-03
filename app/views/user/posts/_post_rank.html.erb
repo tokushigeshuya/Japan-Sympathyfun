@@ -1,0 +1,23 @@
+<div class="row">
+  <div class="col-md-4">
+    <h3 class="ml-3 mt-3">いいねランキング</h3>
+  </div>
+</div>
+<% @rank.each.with_index(1) do |rank, i| %>
+  <div class="col-md-3">
+    第<%= i %>位
+    <div class="card mb-4 shadow-sm">
+      <%= image_tag rank.get_image, size: "180x180", class: 'card-img-top img-responsive-overwrite mx-auto' %>
+        <div class="card-body">
+          <p class="card-text"><%= link_to rank.title, user_post_path(rank.id) %></p>
+            <div class="d-flex justify-content-between align-items-center">
+              <item>
+                <%= image_tag rank.user.get_image, size: "30x30" %>
+                <%= link_to rank.user.name, user_user_path(rank.user.id) %>
+              </item>
+                <small class="text-muted"><%= rank.created_at.strftime('%Y/%m/%d') %></small>
+            </div>
+        </div>
+    </div>
+  </div>
+<% end %>

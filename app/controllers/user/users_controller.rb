@@ -4,6 +4,7 @@ class User::UsersController < ApplicationController
 
   def index
     @user = User.page(params[:page])
+    @rank = User.find(Relationship.group(:follower_id).order('count(follower_id) DESC').limit(3).pluck(:follower_id))
   end
 
   def show
