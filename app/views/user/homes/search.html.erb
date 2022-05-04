@@ -2,8 +2,8 @@
   <div class="container">
     <div class="row">
       <div class="col-md-4">
-        <% if @q.title_cont != nil %>
-          <h3 class="ml-3 mt-3"><%= "#{@q.body_cont} の検索結果" %></h3>
+        <% if @q.title_or_title_cont != nil %>
+          <h3 class="ml-3 mt-3"><%= "#{@q.body_or_title_cont} の検索結果" %></h3>
         <% else %>
           <h3 class="ml-3 mt-3"><%= "検索結果" %></h3>
         <% end %>

@@ -10,6 +10,9 @@ class User::UsersController < ApplicationController
   def show
     @user = User.find(params[:id])
     @post = @user.post.page(params[:page])
+    favorites = Favorite.where(user_id: @user.id).pluck(:post_id)
+    @favorites_post = Post.find(favorites)
+    
 
   end
 

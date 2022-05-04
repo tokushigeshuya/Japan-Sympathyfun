@@ -45,7 +45,7 @@
           <% end %>
       </ul>
       <%= search_form_for @q, url: user_homes_search_path, class:"search-form" do |f| %>
-          <%= f.search_field :body_cont, placeholder: '投稿を探す', class:'input-box' %>
+          <%= f.search_field :body_or_title_cont, placeholder: '投稿を探す', class:'input-box' %>
              <%= f.button type: "submit", class: "bi bi-search" %>
       <% end %>
    </div>
