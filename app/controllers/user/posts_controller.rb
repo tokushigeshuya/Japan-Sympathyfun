@@ -52,6 +52,8 @@ before_action :authenticate_user!, except: [:index, :show]
    private
 
   def post_params
-    params.require(:post).permit(:title, :image, :body,:address,:latitude,:longitude)
+    params.require(:post).permit(:title, :image, :body,:address,:latitude,:longitude,:tag_list)
+    #tag_list を追加
   end
+
 end
