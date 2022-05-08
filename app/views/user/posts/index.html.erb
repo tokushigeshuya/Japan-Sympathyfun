@@ -2,7 +2,11 @@
   <div class="container">
     <div class="row">
       <div class="col-md-4">
+        <% if params[:tag_name] %>
+          <h3 class="ml-3 mt-3"><%=  %>のタグ一覧</h3>
+        <% else %>
          <h3 class="ml-3 mt-3">投稿一覧</h3>
+        <% end %>
          <p class="text-success"><%= notice %></p>
       </div>
     </div>
@@ -25,7 +29,12 @@
           </div>
         <% end %>
     </div>
-    <div class="row justify-content-md-center my-3"><%= paginate @post %></div>
+    <div class="row justify-content-md-center my-3">
+      <% if params[:tag_name] %>
+        <% else %>
+          <%= paginate @post %>
+        <% end %>
+      </div>
     <% if user_signed_in? %>
     <div class="row">
       <div class="col-md-4">
