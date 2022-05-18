@@ -22,6 +22,7 @@ Rails.application.routes.draw do
   end
 
 
+
   namespace :admin do
     resources :posts, only:[:index,:show,:edit,:update,:destroy] do
       resources :post_comments, only: [:destroy]
