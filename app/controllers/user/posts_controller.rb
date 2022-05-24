@@ -28,7 +28,7 @@ before_action :authenticate_user!, except: [:index, :show]
   def show
     @post = Post.find(params[:id])
     @post_comment = PostComment.new
-    
+
   end
 
   def create
@@ -37,7 +37,7 @@ before_action :authenticate_user!, except: [:index, :show]
     if @post.save
       redirect_to user_posts_path,notice: "投稿完了！"
     else
-      render new
+      render :new
     end
   end
 
