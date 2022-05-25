@@ -73,10 +73,14 @@
         <p>現在このユーザーの投稿はありません</p>
       <% end %>
    </div>
-   
+
    <div class="row justify-content-md-center my-3"><%= paginate @post %></div>
+   <% if @favorites.any? %>
    <%= render 'user/posts/favorites_post', favorites_post: @favorites_post %>
-   <div class="row justify-content-md-center my-3"><%= paginate @favorites_post %></div>
+   <% else %>
+   <p>現在いいねした投稿はありません</p>
+   <% end %>
+   <div class="row justify-content-md-center my-3"><%= paginate @favorites_page %></div>
  </div>
 
 

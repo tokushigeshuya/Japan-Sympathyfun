@@ -4,15 +4,15 @@ class User::UsersController < ApplicationController
 
   def index
     @user = User.page(params[:page]).per(4)
-    @rank = User.find(Relationship.group(:follower_id).order('count(follower_id) DESC').limit(3).pluck(:follower_id))
+    @rank = User.find(Relationship.group(:followed_id).order('count(follower_id) DESC').limit(3).pluck(:followed_id))
   end
 
   def show
     @user = User.find(params[:id])
     @post = @user.post.page(params[:page]).per(4)
-    favorites = Favorite.where(user_id: @user.id).pluck(:post_id)
-    @favorites_post = Post.find(favorites)
-    @favorites_post = Kaminari.paginate_array(@favorites_post).page(params[:page]).per(4)
+    @favorites = Favorite.where(user_id: @user.id).pluck(:post_id)
+    @favorites_post = Post.find(@favorites)
+    @favorites_page = Kaminari.paginate_array(@favorites_post).page(params[:page]).per(4)
   end
 
   def edit
