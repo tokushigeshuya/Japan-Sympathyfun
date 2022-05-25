@@ -3,9 +3,9 @@
     <h3 class="ml-3 mt-3">フォロワーランキング</h3>
   </div>
 </div>
-
+<div class="row">
 <% rank.each.with_index(1) do |rank, i| %>
-        <div class="col-md-3">
+        <div class="col-md-4">
           第<%= i %>位
           <div class="card mb-4 shadow-sm">
             <%= image_tag rank.get_image, size: "150x150", class: 'mx-auto img-responsive-overwrite' %>
@@ -21,3 +21,4 @@
           </div>
         </div>
 <% end %>
+</div>
