@@ -8,7 +8,7 @@
         <div class="col-md-4">
           第<%= i %>位
           <div class="card mb-4 shadow-sm">
-            <%= image_tag rank.get_image, size: "150x150", class: 'mx-auto img-responsive-overwrite' %>
+            <%= image_tag rank.get_image, class: 'mx-auto img-responsive-overwrite thumb-img' %>
               <div class="card-body">
                 <p class="card-text"><%= link_to rank.name, user_user_path(rank.id) %></p>
                   <div class="d-flex justify-content-between align-items-center">
