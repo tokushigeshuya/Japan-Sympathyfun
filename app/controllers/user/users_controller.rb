@@ -1,5 +1,5 @@
 class User::UsersController < ApplicationController
-  
+
   before_action :authenticate_user!, except: [:index]
 
   def index
@@ -12,7 +12,7 @@ class User::UsersController < ApplicationController
     @post = @user.post.page(params[:page]).per(4)
     favorites = Favorite.where(user_id: @user.id).pluck(:post_id)
     @favorites_post = Post.find(favorites)
-    @favorites_page = Favorite.page(params[:page])
+    @favorites_post = Kaminari.paginate_array(@favorites_post).page(params[:page]).per(4)
   end
 
   def edit
