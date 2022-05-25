@@ -2,19 +2,19 @@
 <div class="jumbotron my-auto bg-light">
   <div class="slick">
       <div>
-        <%= image_tag 'IMG_3260',size: "250x400", class: 'col' %>
+        <%= image_tag 'IMG_3260', class: 'col top_image' %>
       </div>
       <div>
-        <%= image_tag 'photo0000-4040',size: "250x400", class: 'col' %>
+        <%= image_tag 'photo0000-4040', class: 'col top_image' %>
       </div>
       <div>
-        <%= image_tag 'photo0000-3542',size: "250x400", class: 'col' %>
+        <%= image_tag 'photo0000-3542', class: 'col top_image' %>
       </div>
       <div>
-        <%= image_tag 'yam0080-009',size: "250x400", class: 'col' %>
+        <%= image_tag 'yam0080-009', class: 'col top_image' %>
       </div>
   </div>
-    <h4 class="display-6">ようこそJpanSympathyfunへ!</h4>
+    <h4 class="top_text">ようこそJpanSympathyfunへ!</h4>
 </div>
 
      <div class="row">
@@ -43,7 +43,9 @@
           <% end %>
       </div>
     </div>
-    <div class="row justify-content-md-center my-"><%= paginate @post_all %></div>
+    <div class="row justify-content-md-center my-1"><%= paginate @post_all %></div>
+    
     <%= render 'user/posts/post_rank', rank: @rank %>
+
   </div>
 

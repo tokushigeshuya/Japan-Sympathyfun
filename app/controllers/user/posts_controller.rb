@@ -9,7 +9,7 @@ before_action :authenticate_user!, except: [:index, :show]
     if params[:tag_name]
       @post = Post.tagged_with("#{params[:tag_name]}")
     else
-      @post = Post.page(params[:page])
+      @post = Post.page(params[:page]).per(4)
     end
 
     @posts = Post.where(user_id: [*current_user.following_ids])

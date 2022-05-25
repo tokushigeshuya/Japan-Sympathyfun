@@ -3,17 +3,16 @@ class User::UsersController < ApplicationController
   before_action :authenticate_user!, except: [:index]
 
   def index
-    @user = User.page(params[:page])
+    @user = User.page(params[:page]).per(4)
     @rank = User.find(Relationship.group(:follower_id).order('count(follower_id) DESC').limit(3).pluck(:follower_id))
   end
 
   def show
     @user = User.find(params[:id])
-    @post = @user.post.page(params[:page])
+    @post = @user.post.page(params[:page]).per(4)
     favorites = Favorite.where(user_id: @user.id).pluck(:post_id)
     @favorites_post = Post.find(favorites)
-    
-
+    @favorites_page = Favorite.page(params[:page])
   end
 
   def edit
