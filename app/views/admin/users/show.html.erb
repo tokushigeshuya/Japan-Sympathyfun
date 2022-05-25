@@ -7,7 +7,7 @@
   </div>
     <div class="row">
       <div class="col-6 card w-100 mx-auto mt-4 shadow-lg">
-        <%= image_tag @user.get_image, size: "150x150", class: 'card-img-top　img-responsive-overwrite mx-auto' %>
+        <%= image_tag @user.get_image, class: 'card-img-top　img-responsive-overwrite mx-auto thumb-img' %>
           <div class="card-body">
             <table class="table mb-5">
               <tr>
@@ -45,7 +45,7 @@
       <% @post.each do |post| %>
         <div class="col-md-3">
           <div class="card mb-4 shadow-sm">
-            <%= image_tag post.get_image, size: "180x180", class: 'card-img-top img-responsive-overwrite mx-auto' %>
+            <%= image_tag post.get_image, class: 'card-img-top img-responsive-overwrite mx-auto thumb-img' %>
               <div class="card-body">
                 <p class="card-text"><%= link_to post.title, admin_post_path(post.id) %></p>
                   <div class="d-flex justify-content-between align-items-center">

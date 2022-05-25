@@ -3,8 +3,14 @@ class Admin::PostsController < ApplicationController
   before_action :authenticate_admin!
 
   def index
-    @post = Post.page(params[:page])
-    @post_all = Post.all
+    
+    #タグ絞り込み
+    if params[:tag_name]
+      @post = Post.tagged_with("#{params[:tag_name]}").page(params[:page]).per(4)
+    else
+      @post = Post.page(params[:page]).per(6)
+    end
+      @post_all = Post.all
   end
 
   def show
