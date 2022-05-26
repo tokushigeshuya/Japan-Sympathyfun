@@ -4,10 +4,14 @@ class User::UsersController < ApplicationController
 
   def index
     @user = User.where(is_deleted: false).page(params[:page]).per(4)
-    @rank = User.find(Relationship.group(:followed_id).order('count(follower_id) DESC').limit(3).pluck(:followed_id))
+    @rank = User.find(Relationship.where(followed_id: User.where(is_deleted: false).pluck(:id)).group(:followed_id).order('count(followed_id) DESC').limit(3).pluck(:followed_id))
+    # pp "こことおった", @rank
+    # @rank.delete_if do |v|
+    #   v.is_deleted
+    # end
   end
 
-  def show  
+  def show
     @user = User.find(params[:id])
     @post = @user.post.page(params[:page]).per(4)
     @favorites = Favorite.where(user_id: @user.id).pluck(:post_id)
