@@ -11,8 +11,9 @@ before_action :authenticate_user!, except: [:index, :show]
     else
       @post = Post.page(params[:page]).per(4)
     end
-
-    @posts = Post.where(user_id: [*current_user.following_ids])
+    if user_signed_in?
+      @posts = Post.where(user_id: [*current_user.following_ids])
+    end
 
   end
 
