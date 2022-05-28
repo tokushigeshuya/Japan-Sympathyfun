@@ -18,11 +18,11 @@
                   <span><i class="fa fa-calendar mr-1"></i><%= @post.created_at.strftime('%Y/%m/%d') %></span>
                   <span class="ml-2"><i class="fa fa-comment mr-1"></i><%= @post.post_comments.count %></span>
                   <span class="ml-2">♥<%= @post.favorites.count %> いいね</span>
-                  <span>
-                    <% @post.tag_list.each do |tag| %>
-                      <%= link_to tag, admin_posts_path(tag_name: tag), class:'badge bg-warning text-dark' %>
-                    <% end %>
-                  </span>
+                  <!--<span>-->
+                  <!--  <% @post.tag_list.each do |tag| %>-->
+                  <!--    <%= link_to tag, admin_posts_path(tag_name: tag), class:'badge bg-warning text-dark' %>-->
+                  <!--  <% end %>-->
+                  <!--</span>-->
                     <div class="text-right">
                       <%= link_to "削除", admin_post_path(@post), method: :delete, data: { confirm: '削除しますか？'},class:"btn btn-danger" %>
                     </div>

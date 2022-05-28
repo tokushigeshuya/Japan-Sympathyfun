@@ -6,11 +6,11 @@ before_action :authenticate_user!, except: [:index, :show]
   end
 
   def index
-    if params[:tag_name]
-      @post = Post.tagged_with("#{params[:tag_name]}")
-    else
+    # if params[:tag_name]
+      # @post = Post.tagged_with("#{params[:tag_name]}")
+    # else
       @post = Post.page(params[:page]).per(4)
-    end
+    # end
     if user_signed_in?
       @posts = Post.where(user_id: [*current_user.following_ids])
     end
