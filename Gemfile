@@ -59,7 +59,7 @@ gem 'ransack'
 gem 'jquery-rails'
 gem 'geocoder'
 gem 'kaminari','~> 1.2.1'
-gem 'acts-as-taggable-on'
+
 gem 'dotenv-rails'
 group :production do
   gem 'mysql2'
