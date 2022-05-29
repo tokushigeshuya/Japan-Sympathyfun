@@ -5,10 +5,8 @@ class Post < ApplicationRecord
   has_many :post_comments, dependent: :destroy
   geocoded_by :address
   after_validation :geocode, if: :address_changed?
-  
-  acts_as_taggable
-  # acts_as_taggable_on :tags　と同じ意味のエイリアス
-  
+
+
   validates :title, presence: true
   validates :body, presence: true
   validates :address, presence: true
